@@ -1,0 +1,9 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: fluxcd-http-echo-service
+spec:
+  selector:
+    app: fluxcd-http-echo
+  ports:
+    - port: 5678

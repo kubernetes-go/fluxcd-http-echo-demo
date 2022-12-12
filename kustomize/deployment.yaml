@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fluxcd-http-echo
+  labels:
+    app: fluxcd-http-echo
+spec:
+  selector:
+    matchLabels:
+      app: fluxcd-http-echo
+  template:
+    metadata:
+      labels:
+        app: fluxcd-http-echo
+    spec:
+      containers:
+        - name: fluxcd-http-echo
+          image: registry.my-k8s-cluster.com/my-http-echo
+          args:
+            - "-text=hello, fluxcd"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5678
+          resources:
+            limits:
+              cpu: 20m
+              memory: 40Mi
+            requests:
+              cpu: 10m
+              memory: 20Mi
